@@ -86,18 +86,6 @@
 /************************************************************************/
 /******/ ({
 
-/***/ "./cards.js":
-/*!******************!*\
-  !*** ./cards.js ***!
-  \******************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _data_cards__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./data/cards */ \"./data/cards.js\");\n\r\n\r\nfunction cards() {\r\n    const page = Number(localStorage.getItem('page')) + 1;\r\n    const container = document.querySelector('.container');\r\n\r\n    _data_cards__WEBPACK_IMPORTED_MODULE_0__[\"default\"][page].forEach((element) => {\r\n        const cardContainer = document.createElement('div');\r\n        const card = document.createElement('div');\r\n        const front = document.createElement('div');\r\n        const back = document.createElement('div');\r\n        const frontCardHeader = document.createElement('div');\r\n        const backCardHeader = document.createElement('div');\r\n        cardContainer.className = 'card-container';\r\n        card.className = 'card';\r\n        front.className = 'front';\r\n        back.className = 'back';\r\n        front.style.backgroundImage = `url('./data/${element.image}')`\r\n        frontCardHeader.className = 'card-header';\r\n        frontCardHeader.innerHTML = element.word;\r\n        backCardHeader.className = 'card-header';\r\n        backCardHeader.innerHTML = element.translation;\r\n        container.append(cardContainer);\r\n        cardContainer.append(card);\r\n        card.append(front);\r\n        card.append(back);\r\n        front.append(frontCardHeader);\r\n        back.append(backCardHeader);\r\n\r\n\r\n\r\n    })\r\n\r\n}\r\n\r\n/* harmony default export */ __webpack_exports__[\"default\"] = (cards);\n\n//# sourceURL=webpack:///./cards.js?");
-
-/***/ }),
-
 /***/ "./data/cards.js":
 /*!***********************!*\
   !*** ./data/cards.js ***!
@@ -118,19 +106,67 @@ eval("__webpack_require__.r(__webpack_exports__);\nconst cards = [\n  ['Дейс
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _data_cards__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./data/cards */ \"./data/cards.js\");\n/* harmony import */ var _menu__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./menu */ \"./menu.js\");\n/* harmony import */ var _cards__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./cards */ \"./cards.js\");\n // Данные\n // Боковое меню\n\n\nfunction mainPage() { // Отрисовка главной страницы с категориями\n  const container = document.querySelector('.container.main-container');\n  console.log()\n  _data_cards__WEBPACK_IMPORTED_MODULE_0__[\"default\"][0].forEach((element, index) => {\n    const a = document.createElement('a');\n    a.className = 'main-card green';\n    a.onclick = () => { localStorage.setItem('page', index); };\n    a.innerHTML = `${element}`;\n    a.href = './cards.html';\n    container.append(a);\n    const img = document.createElement('img');\n    img.src = `./data/${_data_cards__WEBPACK_IMPORTED_MODULE_0__[\"default\"][index + 1][0].image}`;\n    a.prepend(img);\n  });\n}\n\nif (document.location.href.slice(document.location.href.lastIndexOf('/') + 1) === 'index.html') {\n  mainPage();\n  Object(_menu__WEBPACK_IMPORTED_MODULE_1__[\"default\"])();\n} else {\n  Object(_cards__WEBPACK_IMPORTED_MODULE_2__[\"default\"])();\n  Object(_menu__WEBPACK_IMPORTED_MODULE_1__[\"default\"])();\n}\n\n//# sourceURL=webpack:///./index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _data_cards__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./data/cards */ \"./data/cards.js\");\n/* harmony import */ var _modules_menu__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/menu */ \"./modules/menu.js\");\n/* harmony import */ var _modules_cardsPage__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/cardsPage */ \"./modules/cardsPage.js\");\n // Данные\n // Боковое меню\n\n\nfunction mainPage() { // Отрисовка главной страницы с категориями\n  const container = document.querySelector('.container.main-container');\n  _data_cards__WEBPACK_IMPORTED_MODULE_0__[\"default\"][0].forEach((element, index) => {\n    const a = document.createElement('a');\n    a.className = 'main-card green';\n    a.onclick = () => { localStorage.setItem('page', index); };\n    a.innerHTML = `${element}`;\n    a.href = './cards.html';\n    container.append(a);\n    const img = document.createElement('img');\n    img.src = `./data/${_data_cards__WEBPACK_IMPORTED_MODULE_0__[\"default\"][index + 1][0].image}`;\n    a.prepend(img);\n  });\n}\n\nif (document.location.href.slice(document.location.href.lastIndexOf('/') + 1) === 'cards.html') {\n  Object(_modules_cardsPage__WEBPACK_IMPORTED_MODULE_2__[\"default\"])();\n  Object(_modules_menu__WEBPACK_IMPORTED_MODULE_1__[\"default\"])();\n} else {\n  mainPage();\n  Object(_modules_menu__WEBPACK_IMPORTED_MODULE_1__[\"default\"])();\n}\n\n\n//# sourceURL=webpack:///./index.js?");
 
 /***/ }),
 
-/***/ "./menu.js":
-/*!*****************!*\
-  !*** ./menu.js ***!
-  \*****************/
+/***/ "./modules/cardAudio.js":
+/*!******************************!*\
+  !*** ./modules/cardAudio.js ***!
+  \******************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _data_cards__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./data/cards */ \"./data/cards.js\");\n\r\n\r\nfunction menu() {\r\n    const menu = document.querySelector('.menu');\r\n    const headerItem = document.createElement('a');\r\n    headerItem.innerHTML = 'Главная';\r\n    headerItem.className = 'header-item';\r\n    menu.append(headerItem);\r\n\r\n    _data_cards__WEBPACK_IMPORTED_MODULE_0__[\"default\"][0].forEach((element, index) => {\r\n        const headerItem = document.createElement('a');\r\n        headerItem.innerHTML = element;\r\n        headerItem.href = ''\r\n        headerItem.className = 'header-item';\r\n        headerItem.onclick = () => { localStorage.setItem('page', index); };\r\n        menu.append(headerItem);\r\n    })\r\n}\r\n/* harmony default export */ __webpack_exports__[\"default\"] = (menu);\n\n//# sourceURL=webpack:///./menu.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return cardAudio; });\nfunction cardAudio(element) {\n  const audio = document.createElement('audio');\n  audio.src = `./data/${element.audioSrc}`;\n  audio.play();\n}\n\n\n//# sourceURL=webpack:///./modules/cardAudio.js?");
+
+/***/ }),
+
+/***/ "./modules/cardItem.js":
+/*!*****************************!*\
+  !*** ./modules/cardItem.js ***!
+  \*****************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return cardItem; });\n/* harmony import */ var _cardAudio__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./cardAudio */ \"./modules/cardAudio.js\");\n\n\nfunction cardItem(element) {\n  const cardContainer = document.createElement('div');\n  const card = document.createElement('div');\n  const front = document.createElement('div');\n  const back = document.createElement('div');\n  const frontCardHeader = document.createElement('div');\n  const backCardHeader = document.createElement('div');\n  const swap = document.createElement('div');\n  cardContainer.className = 'card-container';\n  card.className = 'card';\n  card.onclick = (e) => { if (e.target !== swap) { Object(_cardAudio__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(element); } };\n  card.onmouseleave = () => { card.classList.remove('swap'); };\n  front.className = 'front';\n  back.className = 'back';\n  front.style.backgroundImage = `url('./data/${element.image}')`;\n  frontCardHeader.className = 'card-header';\n  frontCardHeader.innerHTML = element.word;\n  backCardHeader.className = 'card-header';\n  backCardHeader.innerHTML = element.translation;\n  back.style.backgroundImage = `url('./data/${element.image}')`;\n  swap.innerHTML = '&#9851;';\n  swap.className = 'swapBtn';\n  swap.onclick = () => { card.classList.add('swap'); };\n\n  document.querySelector('.container').append(cardContainer);\n  cardContainer.append(card);\n  card.append(front);\n  card.append(back);\n  card.append(swap);\n  front.append(frontCardHeader);\n  back.append(backCardHeader);\n}\n\n\n//# sourceURL=webpack:///./modules/cardItem.js?");
+
+/***/ }),
+
+/***/ "./modules/cardsPage.js":
+/*!******************************!*\
+  !*** ./modules/cardsPage.js ***!
+  \******************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return cardsPage; });\n/* harmony import */ var _cardItem__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./cardItem */ \"./modules/cardItem.js\");\n/* harmony import */ var _data_cards__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../data/cards */ \"./data/cards.js\");\n\n\n\nfunction cardsPage() {\n  const page = Number(localStorage.getItem('page')) + 1; // id of category\n\n  _data_cards__WEBPACK_IMPORTED_MODULE_1__[\"default\"][page].map((element) => { Object(_cardItem__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(element); });\n}\n\n\n//# sourceURL=webpack:///./modules/cardsPage.js?");
+
+/***/ }),
+
+/***/ "./modules/menu.js":
+/*!*************************!*\
+  !*** ./modules/menu.js ***!
+  \*************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _data_cards__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../data/cards */ \"./data/cards.js\");\n/* harmony import */ var _menuItem__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./menuItem */ \"./modules/menuItem.js\");\n\n\n\nfunction menu() {\n  const headerMainItem = document.createElement('a');\n  headerMainItem.innerHTML = 'Главная';\n  headerMainItem.href = 'index.html';\n  headerMainItem.className = 'header-item';\n  document.querySelector('.menu').append(headerMainItem);\n\n  _data_cards__WEBPACK_IMPORTED_MODULE_0__[\"default\"][0].map((element, index) => { Object(_menuItem__WEBPACK_IMPORTED_MODULE_1__[\"default\"])(element, index); });\n}\n/* harmony default export */ __webpack_exports__[\"default\"] = (menu);\n\n\n//# sourceURL=webpack:///./modules/menu.js?");
+
+/***/ }),
+
+/***/ "./modules/menuItem.js":
+/*!*****************************!*\
+  !*** ./modules/menuItem.js ***!
+  \*****************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return menuItem; });\nfunction menuItem(element, index) {\n  const headerItem = document.createElement('a');\n  headerItem.innerHTML = element;\n  headerItem.href = 'cards.html';\n  headerItem.className = 'header-item';\n  headerItem.onclick = () => { localStorage.setItem('page', index); };\n  document.querySelector('.menu').append(headerItem);\n}\n\n\n//# sourceURL=webpack:///./modules/menuItem.js?");
 
 /***/ })
 
